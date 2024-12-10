@@ -202,6 +202,8 @@ class MlirCompileRunTest(pytest.File):
         for config in self.config.iree_test_configs:
             if relative_test_directory in config.get("skip_compile_tests", []):
                 continue
+            if relative_test_directory not in config.get("run_tests", []):
+                continue
 
             expect_compile_success = self.config.getoption(
                 "ignore_xfails"
